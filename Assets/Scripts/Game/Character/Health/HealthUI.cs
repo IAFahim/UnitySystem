@@ -42,7 +42,6 @@ namespace Game.Character.Health
         
         public void eventOnImmuneChanged(bool isImmune, float health, float maxHealth)
         {
-            Set(health, maxHealth);
             Debug.Log($"Immune: {isImmune}");
         }
         
