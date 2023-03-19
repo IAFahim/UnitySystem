@@ -9,6 +9,7 @@ namespace Game.Character.Health
     {
         [SerializeField] private float health;
         [SerializeField] private float maxHealth;
+        [SerializeField] private float overHealAmount;
         [SerializeField] private bool isImmune;
         [SerializeField] private UnityEvent<float, float> eventOnHealthChanged;
         [SerializeField] private UnityEvent<float, float> eventOnOverHeal;
@@ -29,7 +30,8 @@ namespace Game.Character.Health
             OnHealthChange();
             return health;
         }
-
+        
+        
         public float Heal(float point, GameObject healer)
         {
             if (point >= 0)
@@ -40,6 +42,7 @@ namespace Game.Character.Health
             return health;
         }
 
+        
         public float TakeDamage(float point, GameObject attacker)
         {
             if (point >= 0)
@@ -50,8 +53,10 @@ namespace Game.Character.Health
             return health;
         }
 
+        [Button]
         public float SetHealthToMax() => SetHealth(maxHealth);
 
+        
         public float SetMaxHealth(float value)
         {
             OnMaxHealthChange();
