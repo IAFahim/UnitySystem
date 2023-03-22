@@ -467,7 +467,6 @@ MonoBehaviour:
   LeftRightBackgrounds:
   - {fileID: 2081749775}
   - {fileID: 1291135314}
-  LeftRightPositions: []
   buttons:
   - {fileID: 1483832522}
   - {fileID: 816472328}
@@ -475,12 +474,10 @@ MonoBehaviour:
   - {fileID: 1249671479}
   - {fileID: 1621126534}
   - {fileID: 1132036838}
-  buttonPositions: []
   extended: 0
-  startingTime: 0.484
-  endingTime: 0.356
-  sliderTime: 0.124
-  delayTime: 0.05
+  explodeTime: 0.329
+  sliderTime: 0.029
+  delayTime: 0.769
 --- !u!1 &617273605
 GameObject:
   m_ObjectHideFlags: 0

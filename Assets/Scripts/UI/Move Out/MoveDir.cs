@@ -2,7 +2,6 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = Unity.Mathematics.Random;
 
 namespace UI.Move_Out
 {
@@ -11,14 +10,12 @@ namespace UI.Move_Out
         public Button mainButton;
         public Image mainImage;
         public Image[] LeftRightBackgrounds;
-        [SerializeField] private Vector2[] LeftRightPositions;
+        private Vector2[] LeftRightPositions;
 
         public Button[] buttons;
-        [SerializeField] private Vector2[] buttonPositions;
-        private Random random;
-        [SerializeField] private bool extended;
-        [Range(0, 1)] public float startingTime;
-        [Range(0, 1)] public float endingTime;
+        private Vector2[] buttonPositions;
+        [SerializeField] private bool extended=false;
+        [Range(0, 1)] public float explodeTime;
         [Range(0, 1)] public float sliderTime;
         [Range(0, 1)] public float delayTime;
 
@@ -26,19 +23,18 @@ namespace UI.Move_Out
         {
             StoreInitialPositions();
             Hide();
-            random = new Random((uint)System.DateTime.Now.Millisecond);
             mainButton.onClick.AddListener(Toggle);
         }
 
         void StoreInitialPositions()
         {
-            if (buttonPositions != null) buttonPositions = new Vector2[buttons.Length];
+            buttonPositions ??= new Vector2[buttons.Length];
             for (int i = 0; i < buttons.Length; i++)
             {
                 buttonPositions[i] = buttons[i].transform.localPosition;
             }
 
-            if (LeftRightPositions != null) LeftRightPositions = new Vector2[LeftRightBackgrounds.Length];
+            LeftRightPositions ??= new Vector2[LeftRightBackgrounds.Length];
             for (int i = 0; i < LeftRightBackgrounds.Length; i++)
             {
                 LeftRightPositions[i] = LeftRightBackgrounds[i].transform.localPosition;
@@ -47,7 +43,6 @@ namespace UI.Move_Out
 
         void Hide()
         {
-            mainImage.color = new Color(mainImage.color.r, mainImage.color.g, mainImage.color.b, 0);
             foreach (var background in LeftRightBackgrounds)
             {
                 background.color = new Color(background.color.r, background.color.g, background.color.b, 0);
@@ -71,11 +66,17 @@ namespace UI.Move_Out
 
         private void MoveIn()
         {
-            mainImage.DOFade(0, delayTime);
-            for (int i = 0; i < buttons.Length; i++)
+            mainImage.DOFade(1, delayTime);
+
+            for (int i = 0, half = buttons.Length / 2; i < half; i++)
             {
-                buttons[i].transform.DOLocalMove(mainButton.transform.localPosition, random.NextFloat(startingTime, endingTime));
-                buttons[i].image.DOFade(0, delayTime);
+                var localPosition = mainButton.transform.localPosition;
+                int left = i;
+                buttons[left].transform.DOLocalMove(localPosition, explodeTime / (half - i));
+                buttons[left].image.DOFade(0, delayTime);
+                int right = i + half;
+                buttons[right].transform.DOLocalMove(localPosition, explodeTime / (half - i));
+                buttons[right].image.DOFade(0, delayTime);
             }
 
             foreach (var image in LeftRightBackgrounds)
@@ -83,16 +84,21 @@ namespace UI.Move_Out
                 image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
                 image.transform.DOLocalMove(mainButton.transform.localPosition, sliderTime);
             }
+
             StartCoroutine(ToggleExtended());
         }
 
         private void MoveOut()
         {
-            mainImage.DOFade(1, delayTime);
-            for (int i = 0; i < buttons.Length; i++)
+            mainImage.DOFade(0, delayTime);
+            for (int i = 0, half = buttons.Length / 2; i < half; i++)
             {
-                buttons[i].transform.DOLocalMove(buttonPositions[i], random.NextFloat(startingTime, endingTime));
-                buttons[i].image.DOFade(1, delayTime);
+                int left = i;
+                buttons[left].transform.DOLocalMove(buttonPositions[left], explodeTime / (half - i));
+                buttons[left].image.DOFade(1, delayTime);
+                int right = i + half;
+                buttons[right].transform.DOLocalMove(buttonPositions[right], explodeTime / (half - i));
+                buttons[right].image.DOFade(1, delayTime);
             }
 
             for (int i = 0; i < LeftRightBackgrounds.Length; i++)
