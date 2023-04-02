@@ -9,8 +9,8 @@ namespace Bullet
         private static float value = 1f;
         public static Action onSlowMo;
         public static Action onNormalSpeed;
-        
-        private static bool isSlowMo = false;
+
+        public static bool isSlowMo = false;
         public static float GetSpeed()
         {
             return value;
