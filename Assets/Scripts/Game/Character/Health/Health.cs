@@ -19,6 +19,10 @@ namespace Game.Character.Health
         [SerializeField] private UnityEvent<float, float, GameObject> eventOnHeal;
         [SerializeField] private UnityEvent<float, float> eventOnDead;
 
+        private void OnValidate()
+        {
+            SetHealth(health);
+        }
 
         [Button]
         public float SetHealth(float value)

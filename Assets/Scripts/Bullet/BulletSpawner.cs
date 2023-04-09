@@ -50,7 +50,7 @@ namespace Bullet
             Instantiate(bulletPrefab, transform.position, transform.rotation);
         }
 
-        public bool fixRequiredForSlowMo = false;
+        
 
         private IEnumerator FireCoroutine()
         {
@@ -64,10 +64,13 @@ namespace Bullet
                     lastFireTime = currentTime;
                     Fire();
                     if (fixRequiredForSlowMo) SlowMoFix();
+                    else if(fixRequiredForNormalSpeed) onNormalFix();
                 }
                 yield return new WaitForSeconds(timeUntilNextFire);
             }
         }
+        
+        public bool fixRequiredForSlowMo = false;
 
         private void OnSlowDown()
         {
@@ -92,10 +95,25 @@ namespace Bullet
             fireCoroutine = StartCoroutine(FireCoroutine());
         }
 
+        public bool fixRequiredForNormalSpeed = false;
         private void OnNormalSpeed()
         {
             fireRate = baseFireRate / SlowDownSpeed.GetSpeed();
+            fixRequiredForNormalSpeed = true;
             lastFireTime = Time.time;
+            if (fireCoroutine != null)
+            {
+                StopCoroutine(fireCoroutine);
+            }
+            fireCoroutine = StartCoroutine(FireCoroutine());
+        }
+        
+        private void onNormalFix()
+        {
+            diff = (fireRate - (Time.time - lastFireTime)) / fireRate;
+            Debug.Log($"fireRate: {fireRate} diff: {diff} baseFireRate: {baseFireRate}");
+            fireRate = baseFireRate * diff;
+            fixRequiredForNormalSpeed = false;
             if (fireCoroutine != null)
             {
                 StopCoroutine(fireCoroutine);
