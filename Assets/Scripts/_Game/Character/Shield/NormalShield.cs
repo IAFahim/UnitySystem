@@ -1,7 +1,7 @@
-﻿using Game.World;
+﻿using _Game.World;
 using UnityEngine;
 
-namespace Game.Character.Shield
+namespace _Game.Character.Shield
 {
     public class NormalShield: MonoBehaviour, IShield, IEffectedBySlowMo
     {
@@ -17,12 +17,17 @@ namespace Game.Character.Shield
             
         }
 
-        public void OnSlowMo()
+        public void OnSlowMo(float slowMoFactor)
         {
             
         }
 
-        public void OnNormalSpeed()
+        public void FixSlowMo(float slowMoFactor)
+        {
+            
+        }
+
+        public void OnNormalSpeed(float slowMoFactor)
         {
             
         }

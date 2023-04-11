@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Game.Character.Shield
+﻿namespace _Game.Character.Shield
 {
     public interface IShield
     {

@@ -1,7 +1,7 @@
-﻿using Game.Character.Health.Interface;
+﻿using _Game.Character.Health.Interface;
 using UnityEngine;
 
-namespace Game.Character.Health
+namespace _Game.Character.Health
 {
     public class HealthUI : MonoBehaviour, IHealthListener
     {

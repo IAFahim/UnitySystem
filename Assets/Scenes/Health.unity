@@ -220,24 +220,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6846d235c0d5c49b7b9d54cf115062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &125861621 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8380665445956229267, guid: 0bc481d8cc4f65641bb629e2fe80ee5a, type: 3}
+--- !u!114 &125861626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3041761447782689481, guid: 0bc481d8cc4f65641bb629e2fe80ee5a, type: 3}
   m_PrefabInstance: {fileID: 6850529570351226527}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &125861624
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2af590e66a49c7a5995a942b039615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &290125643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 290125645}
+  - component: {fileID: 290125644}
+  m_Layer: 0
+  m_Name: ListenerHealth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &290125644
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125861621}
+  m_GameObject: {fileID: 290125643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734a1c258eef44768011cfd168004574, type: 3}
+  m_Script: {fileID: 11500000, guid: cf4383ca343e446469d83077b7fbd2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
+  health: {fileID: 125861626}
+  fraction: 0.2
+--- !u!4 &290125645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290125643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6850529570351226527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -246,8 +285,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3041761447782689481, guid: 0bc481d8cc4f65641bb629e2fe80ee5a, type: 3}
+      propertyPath: value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041761447782689481, guid: 0bc481d8cc4f65641bb629e2fe80ee5a, type: 3}
       propertyPath: health
-      value: 23.42
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041761447782689481, guid: 0bc481d8cc4f65641bb629e2fe80ee5a, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041761447782689481, guid: 0bc481d8cc4f65641bb629e2fe80ee5a, type: 3}
+      propertyPath: percentage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8380665445936438827, guid: 0bc481d8cc4f65641bb629e2fe80ee5a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8380665445956229267, guid: 0bc481d8cc4f65641bb629e2fe80ee5a, type: 3}
       propertyPath: m_Name

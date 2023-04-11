@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.Character.Health.Interface
+namespace _Game.Character.Health.Interface
 {
     public interface IHealthListener
     {
